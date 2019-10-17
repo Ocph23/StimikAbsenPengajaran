@@ -12,70 +12,68 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <StackLayout>
-                    <Image Grid.Row="0" BackgroundColor="Red" Source="header.png" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                </StackLayout>
-                <StackLayout Padding="10">
-                    <Label Text="Yoseph Kungkung" HorizontalOptions="End" TextColor="Wheat" FontSize="25"/>
-                    <Image Source="photo.png" HorizontalOptions="End" HeightRequest="100" ></Image>
-                    <Label Text="Senin, 25 Desember 2019" TextColor="Wheat" Margin="10,-10" 
+            <Image BackgroundColor="#2A9DB0" Grid.Row="0" Aspect="AspectFill" Source="header.png" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+            <StackLayout Grid.Row="0" Margin="20">
+                <Label Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="25"/>
+                <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
+                <Label Text="{Binding Today,StringFormat='{}{0:dddd, dd MMMM yyyy}'}" TextColor="Wheat" Margin="10,-10" 
                        FontSize="15" HorizontalTextAlignment="End"/>
-                    </StackLayout>
-            </Grid>
+            </StackLayout>
             <StackLayout Grid.Row="1" Padding="10" BackgroundColor="White" Margin="4">
                 <StackLayout Orientation="Horizontal" Padding="10" >
-                    <Label Margin="5" WidthRequest="200" Text="Algoritama Pemograman II"  FontSize="15"/>
-                    <Label VerticalTextAlignment="Center"  Text="10:30 - 20:20"  Margin="10,-10" 
-                       FontSize="15" HorizontalTextAlignment="End"/>
+                    <StackLayout Margin="5">
+                        <Label Text="{Binding Data.NamaMataKuliah}"  FontSize="15"/>
+                        <Label Text="{Binding Data.KelasRuang}"  FontSize="12"/>
+                    </StackLayout>
                 </StackLayout>
+
                 <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.21" Color="Silver"></BoxView>
                 <StackLayout Padding="10">
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Jumlah Mahasiswa"  VerticalTextAlignment="Center"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                        <Entry FontSize="12" WidthRequest="35" HorizontalOptions="EndAndExpand"/>
+                                FontSize="14" />
+                        <Entry FontSize="14" WidthRequest="50" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Hadir"  VerticalTextAlignment="Center"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                        <Entry FontSize="12" WidthRequest="35" HorizontalOptions="EndAndExpand"/>
+                                FontSize="14" />
+                        <Entry FontSize="14" WidthRequest="50" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Tanpa Keterangan"  VerticalTextAlignment="Center"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                        <Entry FontSize="12" WidthRequest="35" HorizontalOptions="EndAndExpand"/>
+                              FontSize="14" />
+                        <Entry FontSize="14" WidthRequest="50" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Sakit"  VerticalTextAlignment="Center"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                        <Entry  FontSize="12" WidthRequest="35" HorizontalOptions="EndAndExpand"/>
+                                FontSize="14" />
+                        <Entry FontSize="14" WidthRequest="50" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Izin"  VerticalTextAlignment="Center"
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                        <Entry FontSize="12" WidthRequest="35" HorizontalOptions="EndAndExpand"/>
+                                 FontSize="14" />
+                        <Entry FontSize="14" WidthRequest="50" HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Materi" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="12" />
-                        <Entry FontSize="12" HorizontalOptions="FillAndExpand"/>
+                                FontSize="14" />
+                        <Editor FontSize="14" HeightRequest="100" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
                     <Button BackgroundColor="#2B9DB1" FontSize="10" TextColor="White" HorizontalOptions="EndAndExpand"
-                                            Padding="1" HeightRequest="30" Text="Simpan" 
+                                            Padding="1" HeightRequest="45" Text="Simpan" 
                                             CornerRadius="15" WidthRequest="120"></Button>
                 </StackLayout>
             </StackLayout>

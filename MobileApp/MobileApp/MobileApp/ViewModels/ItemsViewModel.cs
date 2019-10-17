@@ -7,28 +7,33 @@ using Xamarin.Forms;
 
 using MobileApp.Models;
 using MobileApp.Views;
+using System.Linq;
 
 namespace MobileApp.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<Jadwal> Items { get; set; }
+        public Dosen Dosen {get;set;}
+        public DateTime Today { get; set; } = DateTime.Now;
         public Command LoadItemsCommand { get; set; }
+        private int jumlah;
+
+        public int Jumlah
+        {
+            get { return jumlah; }
+            set { SetProperty(ref jumlah ,value); }
+        }
+
 
         public ItemsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<Jadwal>();
+            Dosen = Helper.Dosen;
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
-            {
-                var newItem = item as Item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
-            });
         }
 
+       
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -39,15 +44,27 @@ namespace MobileApp.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                var items = await JadwalStore.Get();
+
+                string hari = Helper.GetDayName(Today.DayOfWeek);
+                if(items!=null)
                 {
-                    Items.Add(item);
+                    Jumlah = items.Count;
+                    foreach (var item in items)
+                    {
+                        Items.Add(item);
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                MessagingCenter.Send(new MessagingCenterAlert
+                {
+                    Title = "Error",
+                    Message = ex.Message,
+                    Cancel = "OK"
+                }, "message");
             }
             finally
             {

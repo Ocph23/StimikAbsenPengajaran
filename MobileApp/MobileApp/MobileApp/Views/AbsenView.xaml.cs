@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,10 @@ namespace MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AbsenView : ContentPage
     {
-        public AbsenView()
+        public AbsenView(Models.Jadwal data)
         {
             InitializeComponent();
+            this.BindingContext = new AbsenViewModel(data);
         }
     }
 }

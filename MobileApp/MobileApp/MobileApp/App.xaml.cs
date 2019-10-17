@@ -12,9 +12,14 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
+            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async (message) =>
+            {
+                await Current.MainPage.DisplayAlert(message.Title, message.Message, message.Cancel);
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new ItemsPage();
+            });
+            DependencyService.Register<AuthService>();
+            DependencyService.Register<JadwalService>();
+            ChangeScreen(new AuthView());
         }
 
         protected override void OnStart()
@@ -30,6 +35,12 @@ namespace MobileApp
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+
+        public void ChangeScreen(Page page)
+        {
+            Current.MainPage = new NavigationPage(page);
         }
     }
 }
