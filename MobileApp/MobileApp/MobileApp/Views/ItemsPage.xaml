@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customcontrols="clr-namespace:MobileApp.CustomControls"
+             mc:Ignorable="d" BackgroundColor="LightGray"
+             x:Class="MobileApp.Views.ItemsPage"
+             Title="{Binding Title}"
+             x:Name="BrowseItemsPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image BackgroundColor="#2A9DB0" Grid.Row="0" Aspect="AspectFill" Source="header.png" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+        <StackLayout Grid.Row="0" Margin="20">
+            <Label Text="Yoseph Kungkung" TextColor="Wheat" FontSize="25"/>
+            <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
+            <Label Text="Senin, 25 Desember 2019" TextColor="Wheat" Margin="10,-10" 
+                       FontSize="15" HorizontalTextAlignment="End"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" Margin="10" Orientation="Horizontal" >
+            <Label Text="2" FontSize="40" />
+            <Label Text="Mata Kuliah" FontSize="15" VerticalTextAlignment="Center"/>
+        </StackLayout>
+        <ListView Grid.Row="2" x:Name="ItemsListView" Margin="0,0,20,0"
+                ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
+            <d:ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>09:00</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Fourth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                </x:Array>
+            </d:ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10" BackgroundColor="White" Margin="4">
+                            <StackLayout Orientation="Horizontal" Padding="10" >
+                                <Label Margin="5" Text="Algoritama Saja Pemograman II"  FontSize="15"/>
+                                <Button BackgroundColor="#2B9DB1" FontSize="10" TextColor="White" HorizontalOptions="EndAndExpand"
+                                            Padding="1" HeightRequest="15" Text="Pilih" 
+                                            CornerRadius="15" WidthRequest="75"></Button>
+                            </StackLayout>
+                            <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.51" Color="Silver"></BoxView>
+                            <StackLayout Padding="20" Orientation="Horizontal">
+                                <Label Text="{Binding Text}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="30" />
+                                <StackLayout Margin="20,0">
+                                    <Label Text="1 Jam" HorizontalOptions="Center" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="10" />
+                                    <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.51" Color="Silver"></BoxView>
+                                    <Label Text="10 Menit" HorizontalOptions="Center" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="10" />
+                                </StackLayout>
+                                <Label Text="{Binding Text}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="30" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</ContentPage>
