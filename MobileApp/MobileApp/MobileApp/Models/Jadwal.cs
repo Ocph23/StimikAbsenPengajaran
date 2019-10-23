@@ -94,6 +94,22 @@ namespace MobileApp.Models
             get { return $"Kelas : {Kelas}  - Ruang : {Ruang}"; }
         }
 
+        public string Jam
+        {
+            get {
+                TimeSpan selisih = Selesai.Subtract(Mulai);
+                return $"{selisih.Hours} Jam"; }
+        }
+
+        public string Menit
+        {
+            get
+            {
+                TimeSpan selisih = Selesai.Subtract(Mulai);
+                return $"{selisih.Minutes} Menit";
+            }
+        }
+
         public Command SelectedCommand { get; }
 
         public Jadwal()
@@ -107,7 +123,7 @@ namespace MobileApp.Models
             if (data != null)
             {
                 var main = await Helper.GetMainPageAsync();
-                main.ChangeScreen(new AbsenView(data));
+                await main.MainPage.Navigation.PushAsync(new AbsenView(data));
             }
         }
     }

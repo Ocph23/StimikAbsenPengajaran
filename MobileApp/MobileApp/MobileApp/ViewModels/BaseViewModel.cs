@@ -14,6 +14,7 @@ namespace MobileApp.ViewModels
     {
         public IAuthService UserStore => DependencyService.Get<IAuthService>();
         public IJadwalService<Jadwal> JadwalStore=> DependencyService.Get<IJadwalService<Jadwal>>();
+        public IBeritaAcaraService<BeritaAcara> BeritaAcaraStore=> DependencyService.Get<IBeritaAcaraService<BeritaAcara>>();
 
         bool isBusy = false;
         public bool IsBusy

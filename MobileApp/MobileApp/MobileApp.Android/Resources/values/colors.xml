@@ -4,4 +4,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="window_background">#F5F5F5</color>
+    <drawable name="bg_color">#F5F5F5</drawable>
+    <color name="white">#EBEBEB</color>
+    <color name="silver">#EBEBEB</color>
+    <color name="black">#000</color>
 </resources>

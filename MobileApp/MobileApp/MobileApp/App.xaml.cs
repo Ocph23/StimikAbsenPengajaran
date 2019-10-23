@@ -12,6 +12,7 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async (message) =>
             {
                 await Current.MainPage.DisplayAlert(message.Title, message.Message, message.Cancel);
@@ -19,6 +20,7 @@ namespace MobileApp
             });
             DependencyService.Register<AuthService>();
             DependencyService.Register<JadwalService>();
+            DependencyService.Register<BeritaAcaraService>();
             ChangeScreen(new AuthView());
         }
 

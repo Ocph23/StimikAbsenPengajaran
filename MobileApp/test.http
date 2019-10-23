@@ -1,0 +1,65 @@
+POST http://restsimak.stimiksepnop.ac.id/api/users/login HTTP/1.1
+Content-Type:  application/json
+
+{
+    "Username":"budi01",
+    "Password":"stimik1011"
+}
+
+#####
+
+POST http://restsimak.stimiksepnop.ac.id/api/beritaacara/AddBaMengajar HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjExMTUiLCJVc2VybmFtZSI6ImJ1ZGkwMSIsIkVtYWlsIjoiYnVkaUBnbWFpbC5jb20iLCJOYW1hVXNlciI6IkJVREkgU09FUFJJWUFOVE8iLCJ0aW1lIjoxNTcxNDk3NjQxfQ.k9wjCN99YC3J-DGzBHvlHIFTWRqAx6fPXHb-69Faj-A
+
+{
+    "idbamengajardosen":null,
+    "tanggal":"2019-10-21T00:09:25.776706+09:00",
+    "nidn":"1428096701",
+    "kmk":"000007",
+    "idjadwal":1221,
+    "jumlah":4,
+    "hadir":0,
+    "alpha":0,
+    "sakit":0,
+    "izin":1,
+    "materi":"Materi 1",
+    "persetujuan1":null,
+    "persetujuan2":null
+}
+#####
+
+
+
+GET http://restsimak.stimiksepnop.ac.id/api/beritaacara/GetBaMengajar?idjadwal=1221&&nidn=1428096701 HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjExMTUiLCJVc2VybmFtZSI6ImJ1ZGkwMSIsIkVtYWlsIjoiYnVkaUBnbWFpbC5jb20iLCJOYW1hVXNlciI6IkJVREkgU09FUFJJWUFOVE8iLCJ0aW1lIjoxNTcxNDk3NjQxfQ.k9wjCN99YC3J-DGzBHvlHIFTWRqAx6fPXHb-69Faj-A
+
+
+#####
+
+
+
+Put http://restsimak.stimiksepnop.ac.id/api/beritaacara/updateBaMengajar HTTP/1.1
+content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjExMTUiLCJVc2VybmFtZSI6ImJ1ZGkwMSIsIkVtYWlsIjoiYnVkaUBnbWFpbC5jb20iLCJOYW1hVXNlciI6IkJVREkgU09FUFJJWUFOVE8iLCJ0aW1lIjoxNTcxNDk3NjQxfQ.k9wjCN99YC3J-DGzBHvlHIFTWRqAx6fPXHb-69Faj-A
+
+ {
+      "idbamengajardosen": "5",
+      "nidn": "1428096701",
+      "idjadwal": "1221",
+      "kmk": "000007",
+      "tanggal": "2019-10-20",
+      "hadir": "38",
+      "alpha": "0",
+      "sakit": "1",
+      "izin": "1",
+      "materi": "The TINYTEXT data object is the smallest of the TEXT family and is built to efficiently store short information strings. This type can store up to 255 bytes (expressed as 2^8 -1) or 255 characters and requires a 1 byte overhead. This object can be used to store things like short summaries, URL links, and other shorter objects. TINYTEXT shines over VARCHAR when storing data that’s under 255 characters with an inconsistent length and no need to be used for sorting criteria.",
+      "jumlah": "40",
+      "persetujuan1": null,
+      "persetujuan2": null
+    }
+    
+#####
+
+

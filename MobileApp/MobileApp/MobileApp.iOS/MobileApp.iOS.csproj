@@ -139,4 +139,14 @@
       <Name>MobileApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logostimik.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photo.png">
+      <SubType>Designer</SubType>
+    </BundleResource>
+  </ItemGroup>
 </Project>

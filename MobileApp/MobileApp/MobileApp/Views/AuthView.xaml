@@ -1,17 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customcontrols="clr-namespace:MobileApp.CustomControls"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" BackgroundColor="White"
+             NavigationPage.HasNavigationBar="false"
              x:Class="MobileApp.Views.AuthView">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Margin="50" VerticalOptions="CenterAndExpand">
-                <Entry Margin="10" Text="{Binding Model.UserName}" Placeholder="User Name" HorizontalOptions="FillAndExpand"/>
-                <Entry Margin="10" Text="{Binding Model.Password}" Placeholder="Password" HorizontalOptions="FillAndExpand"/>
-                <Button Margin="10" Text="Login" BackgroundColor="#2B9DB1" WidthRequest="200" HeightRequest="55"
+        <customcontrols:CustomFrame CornerRadius="0,75,150,0" Grid.Row="0" BackgroundColor="#065C89">
+            <StackLayout>
+                <StackLayout Margin="40,10" VerticalOptions="CenterAndExpand">
+                    <Image x:Name="logo" Margin="20,20,20,40" WidthRequest="150" TranslationX="-200" TranslationY="-200" >
+                        <Image.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <OnPlatform.Android>
+                                    <FileImageSource File="Logostimik.png"/>
+                                </OnPlatform.Android>
+                                <OnPlatform.WinPhone>
+                                    <FileImageSource File="Assets/Logostimik.png"/>
+                                </OnPlatform.WinPhone>
+                            </OnPlatform>
+                        </Image.Source>
+                    </Image>
+                    <Entry TextChanged="Entry_TextChanged" TextColor="White" BackgroundColor="Transparent"  Margin="10" Text="{Binding Model.UserName}" Placeholder="User Name" HorizontalOptions="FillAndExpand"/>
+                    <Entry IsPassword="True" TextColor="White" BackgroundColor="Transparent" Margin="10" Text="{Binding Model.Password}" Placeholder="Password" HorizontalOptions="FillAndExpand"/>
+                    <Button Margin="10" Text="Login" BackgroundColor="#2B9DB1" WidthRequest="200" HeightRequest="55"
                 VerticalOptions="CenterAndExpand" TextColor="White"
                 HorizontalOptions="CenterAndExpand" Command="{Binding LoginCommand}" />
+                    <StackLayout HeightRequest="100">
+                        <forms:AnimationView  HeightRequest="75"
+	                x:Name="animationView" 
+	                Grid.Row="1" IsVisible="{Binding IsBusy}"
+	                Animation="51preloader.json" 
+	                Loop="True"  
+	                AutoPlay="False"
+                    IsPlaying="{Binding IsBusy}"
+                    VerticalOptions="FillAndExpand" 
+	                HorizontalOptions="FillAndExpand" >
+                            <forms:AnimationView.Animation>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="51preloader.json" />
+                                    <On Platform="UWP" Value="Assets/51preloader.json" />
+                                </OnPlatform>
+                            </forms:AnimationView.Animation>
+                        </forms:AnimationView>
+                    </StackLayout>
+
+                </StackLayout>
+                <Label Margin="10" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="Ocph23 - 2019"/>
             </StackLayout>
-            <Label Margin="10" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="Ocph23 - 2019"/>
-        </StackLayout>
+        </customcontrols:CustomFrame>
     </ContentPage.Content>
 </ContentPage>

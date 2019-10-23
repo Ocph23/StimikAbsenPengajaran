@@ -1,8 +1,10 @@
-﻿using MobileApp.Models;
+﻿using Lottie.Forms;
+using MobileApp.Models;
 using MobileApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
@@ -11,10 +13,13 @@ namespace MobileApp.ViewModels
     {
         public User Model { get; set; } = new User();
 
-        public AuthViewModel()
+        public AuthViewModel(Lottie.Forms.AnimationView animationView)
         {
+            animation = animationView;
             LoginCommand = new Command(LoginAction);
         }
+
+        private AnimationView animation;
 
         public Command LoginCommand { get; }
 
@@ -22,9 +27,14 @@ namespace MobileApp.ViewModels
         {
             try
             {
-                await this.UserStore.Login(Model.UserName, Model.Password);
-                var main = await Helper.GetMainPageAsync();
-                main.ChangeScreen(new ItemsPage());
+                if (!IsBusy)
+                {
+                    IsBusy = true;
+                    await this.UserStore.Login(Model.UserName, Model.Password);
+                    var main = await Helper.GetMainPageAsync();
+                    await Task.Delay(1000);
+                    main.ChangeScreen(new ItemsPage());
+                }
             }
             catch (Exception ex)
             {
@@ -35,6 +45,10 @@ namespace MobileApp.ViewModels
                     Cancel = "OK"
                 }, "message");
 
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

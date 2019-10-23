@@ -5,78 +5,83 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:customcontrols="clr-namespace:MobileApp.CustomControls"
              mc:Ignorable="d" BackgroundColor="LightGray"
-             x:Class="MobileApp.Views.ItemsPage"
+             x:Class="MobileApp.Views.ItemsPage" NavigationPage.HasNavigationBar="false"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Image BackgroundColor="#2A9DB0" Grid.Row="0" Aspect="AspectFill" Source="header.png" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
-        <StackLayout Grid.Row="0" Margin="20">
-            <Label Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="25"/>
-            <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
-            <Label Text="{Binding Today,StringFormat='{}{0:dddd, dd MMMM yyyy}'}" TextColor="Wheat" Margin="10,-10" 
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <customcontrols:CustomFrame HasShadow="True" CornerRadius="0,30,60,0" Grid.Row="0" BackgroundColor="#065C89">
+                <StackLayout Margin="10">
+                    <Label Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="20"/>
+                    <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
+                    <Label Text="{Binding Today,StringFormat='{}{0:dddd, dd MMMM yyyy}'}" TextColor="White" Margin="10,-10" 
                        FontSize="15" HorizontalTextAlignment="End"/>
-        </StackLayout>
+                </StackLayout>
+            </customcontrols:CustomFrame>
 
-        <StackLayout Grid.Row="1" Margin="10" Orientation="Horizontal" >
-            <Label Text="{Binding Jumlah}" FontSize="40" />
-            <Label Text="Mata Kuliah" FontSize="15" VerticalTextAlignment="Center"/>
-        </StackLayout>
-        <ListView ItemsSource="{Binding Items}" Grid.Row="2" x:Name="ItemsListView" Margin="0,0,20,0"
+            <StackLayout Grid.Row="1" Margin="10" Orientation="Horizontal" >
+                <Label Text="{Binding Jumlah}" FontSize="40" />
+                <Label Text="Mata Kuliah" FontSize="15" VerticalTextAlignment="Center"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding Items}" Grid.Row="2" x:Name="ItemsListView" Margin="0,0,25,4"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="10" BackgroundColor="White" Margin="4">
-                            <StackLayout Orientation="Horizontal" Padding="10" >
-                                <StackLayout Margin="5">
-                                    <Label Text="{Binding NamaMataKuliah}"  FontSize="15"/>
-                                    <Label Text="{Binding KelasRuang}"  FontSize="12"/>
-                                </StackLayout>
-                                <Button BackgroundColor="#2B9DB1" FontSize="10" TextColor="White" HorizontalOptions="EndAndExpand"
+                CachingStrategy="RecycleElement" ItemTapped="ItemsListView_ItemTapped"
+                SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <customcontrols:CustomFrame CornerRadius="0,10,0,10" Margin="4">
+                                <StackLayout Padding="10" BackgroundColor="White" >
+                                    <StackLayout Orientation="Horizontal" Padding="10" >
+                                        <StackLayout Margin="5">
+                                            <Label Text="{Binding NamaMataKuliah}"  FontSize="15"/>
+                                            <Label Text="{Binding KelasRuang}"  FontSize="12"/>
+                                        </StackLayout>
+                                        <Button BackgroundColor="#2B9DB1" FontSize="10" TextColor="White" HorizontalOptions="EndAndExpand"
                                             Padding="1" HeightRequest="15" Text="Pilih" 
                                         Command="{Binding SelectedCommand}" 
                                         CommandParameter="{Binding .}"
                                             CornerRadius="15" WidthRequest="75"></Button>
-                            </StackLayout>
-                           
-                            <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.51" Color="Silver"></BoxView>
-                            <StackLayout Padding="20" Orientation="Horizontal">
-                                <Label Text="{Binding Mulai, StringFormat='\{0:HH:MM}'}" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="30" />
-                                <StackLayout Margin="20,0">
-                                    <Label Text="1 Jam" HorizontalOptions="Center" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="10" />
+                                    </StackLayout>
+
                                     <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.51" Color="Silver"></BoxView>
-                                    <Label Text="10 Menit" HorizontalOptions="Center" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="10" />
-                                </StackLayout>
-                                <Label Text="{Binding Selesai, StringFormat='\{0:HH:MM}'}" 
+                                    <StackLayout Padding="20" Orientation="Horizontal">
+                                        <Label Text="{Binding Mulai, StringFormat='\{0:HH:mm}'}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="30" />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+                                        <StackLayout Margin="20,0">
+                                            <Label Text="{Binding Jam}" HorizontalOptions="Center" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="10" />
+                                            <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.51" Color="Silver"></BoxView>
+                                            <Label Text="{Binding Menit}" HorizontalOptions="Center" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="10" />
+                                        </StackLayout>
+                                        <Label Text="{Binding Selesai, StringFormat='\{0:HH:mm}'}" 
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="30" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </customcontrols:CustomFrame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ScrollView>
 
 </ContentPage>

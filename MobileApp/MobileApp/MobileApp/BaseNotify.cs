@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
@@ -8,6 +9,7 @@ namespace MobileApp
 {
     public class BaseNotify : INotifyPropertyChanged
     {
+        [JsonIgnore]
         public string MyTitle { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;

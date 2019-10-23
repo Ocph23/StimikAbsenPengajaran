@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-using MobileApp.Models;
-using MobileApp.Views;
 using MobileApp.ViewModels;
+using MobileApp.Models;
 
 namespace MobileApp.Views
 {
@@ -33,6 +25,13 @@ namespace MobileApp.Views
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private async void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var item = (sender as ListView).SelectedItem as Jadwal;
+            var main = await Helper.GetMainPageAsync();
+           await main.MainPage.Navigation.PushAsync(new HistoryView(item));
         }
     }
 }
