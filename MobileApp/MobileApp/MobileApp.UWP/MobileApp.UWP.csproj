@@ -206,6 +206,15 @@
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie">
       <Version>3.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Crashes">
+      <Version>2.1.1</Version>
+    </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>2.0.3</Version>
     </PackageReference>

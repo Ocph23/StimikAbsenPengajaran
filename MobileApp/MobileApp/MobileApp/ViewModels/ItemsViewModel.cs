@@ -30,11 +30,12 @@ namespace MobileApp.ViewModels
         {
             Items = new ObservableCollection<Jadwal>();
             Dosen = Helper.Dosen;
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
+         //   LoadItemsCommand.Execute(null);
         }
 
        
-        async Task ExecuteLoadItemsCommand()
+        async void ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;
@@ -43,6 +44,7 @@ namespace MobileApp.ViewModels
 
             try
             {
+                await Task.Delay(500);
                 Items.Clear();
                 var items = await JadwalStore.Get();
 

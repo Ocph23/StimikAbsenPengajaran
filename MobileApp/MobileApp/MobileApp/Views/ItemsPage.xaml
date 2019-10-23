@@ -6,7 +6,7 @@
              xmlns:customcontrols="clr-namespace:MobileApp.CustomControls"
              mc:Ignorable="d" BackgroundColor="LightGray"
              x:Class="MobileApp.Views.ItemsPage" NavigationPage.HasNavigationBar="false"
-             Title="{Binding Title}"
+             Title="{Binding Title}" 
              x:Name="BrowseItemsPage">
     <ScrollView>
         <Grid>

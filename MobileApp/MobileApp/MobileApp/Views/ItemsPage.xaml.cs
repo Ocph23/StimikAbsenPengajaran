@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using MobileApp.ViewModels;
 using MobileApp.Models;
+using MobileApp.Services;
 
 namespace MobileApp.Views
 {
@@ -32,6 +33,17 @@ namespace MobileApp.Views
             var item = (sender as ListView).SelectedItem as Jadwal;
             var main = await Helper.GetMainPageAsync();
            await main.MainPage.Navigation.PushAsync(new HistoryView(item));
+        }
+
+        [System.Obsolete]
+        protected override bool OnBackButtonPressed()
+        {
+            if(Device.OS == TargetPlatform.Android)
+            {
+                DependencyService.Get<IKillApp>().CloseAppAsync();
+            }
+          
+            return base.OnBackButtonPressed();
         }
     }
 }

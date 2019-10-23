@@ -3,6 +3,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MobileApp.Services;
 using MobileApp.Views;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace MobileApp
 {
@@ -26,7 +29,14 @@ namespace MobileApp
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            AppCenter.Start("android=ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c;" +
+                   "uwp={cb9aee59-a2e1-4d07-beaa-57877e1e9cd9};" +
+                   "ios={Your iOS App secret here}",
+                   typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("android=ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c;" +
+                              "uwp={Your UWP App secret here};" +
+                              "ios={Your iOS App secret here}",
+                              typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
@@ -38,6 +48,7 @@ namespace MobileApp
         {
             // Handle when your app resumes
         }
+
 
 
         public void ChangeScreen(Page page)

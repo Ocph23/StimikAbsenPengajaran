@@ -10,31 +10,25 @@ namespace MobileApp.Services
    public class JadwalService : IJadwalService<Jadwal>
     {
 
-        private List<Jadwal> list { get; set; }
-
         public async Task<List<Jadwal>> Get()
         {
             try
             {
-                if(list==null)
+                using (var service = new RestService())
                 {
-                    using (var service = new RestService())
+                    service.SetToken(Helper.Token);
+                    var response = await service.GetAsync("api/jadwal/jadwaldosen");
+                    if (response.IsSuccessStatusCode)
                     {
-                        service.SetToken(Helper.Token);
-                        var response = await service.GetAsync("api/jadwal/jadwaldosen");
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var content = await response.Content.ReadAsStringAsync();
-                            ResponseResult res = JsonConvert.DeserializeObject<ResponseResult>(content);
-                            list = JsonConvert.DeserializeObject<List<Jadwal>>(res.data.ToString());
-                        }
-                        else
-                        {
-                            throw new System.Exception(response.StatusCode.ToString());
-                        }
+                        var content = await response.Content.ReadAsStringAsync();
+                        ResponseResult res = JsonConvert.DeserializeObject<ResponseResult>(content);
+                        return JsonConvert.DeserializeObject<List<Jadwal>>(res.data.ToString());
+                    }
+                    else
+                    {
+                        throw new System.Exception(response.StatusCode.ToString());
                     }
                 }
-                return list;
             }
             catch (Exception ex)
             {
