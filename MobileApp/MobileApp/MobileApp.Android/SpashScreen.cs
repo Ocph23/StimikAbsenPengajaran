@@ -7,7 +7,7 @@ using MobileApp.Droid;
 
 namespace MobileApp.Droid
 {
-    [Activity(Theme = "@style/Theme.Splash", Label ="BA Pembelajaran",
+    [Activity(Theme = "@style/Theme.Splash", Label ="BA Mengajar",
       MainLauncher = true,
       NoHistory = true)]
     public class SpashScreen : Activity, Animator.IAnimatorListener
