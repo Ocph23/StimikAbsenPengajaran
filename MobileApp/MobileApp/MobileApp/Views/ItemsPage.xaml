@@ -19,8 +19,8 @@
                 <StackLayout Margin="10">
                     <Label Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="20"/>
                     <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
-                    <Label Text="{Binding Today,StringFormat='{}{0:dddd, dd MMMM yyyy}'}" TextColor="White" Margin="10,-10" 
-                       FontSize="15" HorizontalTextAlignment="End"/>
+                    <Label Text="{Binding Clock.Current,StringFormat='{}{0:dddd, dd MMMM yyyy - HH:mm:ss}'}" TextColor="White" Margin="10,-10" 
+                       FontSize="15" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </customcontrols:CustomFrame>
 

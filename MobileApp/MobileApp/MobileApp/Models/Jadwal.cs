@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MobileApp.Models
 {
-   public class Jadwal
+   public class Jadwal:BaseNotify
     {
 
         private int jadwalId;
@@ -110,11 +110,52 @@ namespace MobileApp.Models
             }
         }
 
-        public Command SelectedCommand { get; }
+        private Command selectedCommand;
+
+        public Command SelectedCommand
+        {
+            get { return selectedCommand; }
+            set {SetProperty(ref  selectedCommand ,value); }
+        }
+
+
+
+        private bool added;
+
+        public bool Added
+        {
+            get { return added; }
+            set { SetProperty(ref added ,value); }
+        }
+
+
+        public Clock MyClock { get; set; }
 
         public Jadwal()
         {
-            SelectedCommand = new Command(async (x) => await OnSelected(x));
+           
+            MyClock = Helper.CurrentClock;
+            MyClock.OnTick += MyClock_OnTick;
+        }
+
+        private void MyClock_OnTick()
+        {
+            SelectedCommand = new Command(async (x) => await OnSelected(x), CanSelect);
+        }
+
+        private bool CanSelect(object arg)
+        {
+            if (Added)
+                return false;
+            //  var newDate = new DateTime(MyClock.Current.Year, MyClock.Current.Month, MyClock.Current.Day,
+            //  Convert.ToInt32(19),Convert.ToInt32(45), 0);
+            var newDate = MyClock.Current;
+            var currentTimeStart = newDate.TimeOfDay;
+            var selisihx = currentTimeStart.Subtract(Selesai.TimeOfDay);
+            if (selisihx.TotalMinutes >= 15)
+                return true;
+            else
+                return false;
         }
 
         private async Task OnSelected(object obj)

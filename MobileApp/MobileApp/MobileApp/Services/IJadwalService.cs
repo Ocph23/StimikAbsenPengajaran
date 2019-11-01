@@ -10,5 +10,7 @@ namespace MobileApp.Services
     {
         Task<List<T>> Get();
         Task<List<T>> GetJadwalToday();
+
+        Task<DataTimeZone> GetDateTimeNow();
     }
 }

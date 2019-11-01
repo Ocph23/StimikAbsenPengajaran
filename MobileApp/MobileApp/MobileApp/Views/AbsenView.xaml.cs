@@ -15,7 +15,7 @@ namespace MobileApp.Views
         public AbsenView(Models.Jadwal data)
         {
             InitializeComponent();
-            this.BindingContext=vm= new AbsenViewModel(data);
+            this.BindingContext=vm= new AbsenViewModel(data, this.Navigation);
             jumlah.onChangeValue += Jumlah_onChangeValue;
             hadir.onChangeValue += Hadir_onChangeValue; 
             alpa.onChangeValue += Alpa_onChangeValue;
@@ -43,7 +43,7 @@ namespace MobileApp.Views
         public AbsenView(Models.Jadwal data, BeritaAcara ba)
         {
             InitializeComponent();
-            this.BindingContext = vm = new AbsenViewModel(data,ba);
+            this.BindingContext = vm = new AbsenViewModel(data,ba, Navigation);
             jumlah.onChangeValue += Jumlah_onChangeValue;
             hadir.onChangeValue += Hadir_onChangeValue;
             alpa.onChangeValue += Alpa_onChangeValue;

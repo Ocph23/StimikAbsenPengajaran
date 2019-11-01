@@ -18,7 +18,6 @@ namespace MobileApp.Droid
             SetContentView(Resource.Layout.Spash_Screen);
             LottieAnimationView animationView =(LottieAnimationView)FindViewById(Resource.Id.animation_sreen);
             animationView.AddAnimatorListener(this);
-
         }
 
         public void OnAnimationCancel(Animator animation)

@@ -6,6 +6,7 @@ using MobileApp.Views;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using System.Globalization;
 
 namespace MobileApp
 {
@@ -15,6 +16,20 @@ namespace MobileApp
         public App()
         {
             InitializeComponent();
+
+            CultureInfo requestCulture;
+            try
+            {
+                // Request top UserLanguage from user agent and create CultureInfo object.
+                requestCulture = CultureInfo.CreateSpecificCulture("id-ID");
+            }
+            catch
+            {
+                // Return server Culture if none available in HttpHeaders.
+                requestCulture = CultureInfo.CurrentCulture;
+            }
+            System.Threading.Thread.CurrentThread.CurrentCulture = requestCulture;
+
             NavigationPage.SetHasNavigationBar(this, false);
             MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async (message) =>
             {

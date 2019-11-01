@@ -2,9 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
 using MobileApp.Models;
 using MobileApp.Views;
 using System.Linq;
@@ -18,6 +16,15 @@ namespace MobileApp.ViewModels
         public DateTime Today { get; set; } = DateTime.Now;
         public Command LoadItemsCommand { get; set; }
         private int jumlah;
+
+        private Clock clock;
+
+        public Clock Clock
+        {
+            get { return clock; }
+            set {SetProperty(ref clock ,value); }
+        }
+
 
         public int Jumlah
         {
@@ -34,7 +41,7 @@ namespace MobileApp.ViewModels
          //   LoadItemsCommand.Execute(null);
         }
 
-       
+
         async void ExecuteLoadItemsCommand()
         {
             if (IsBusy)
@@ -46,18 +53,35 @@ namespace MobileApp.ViewModels
             {
                 await Task.Delay(500);
                 Items.Clear();
+
+                var now = await JadwalStore.GetDateTimeNow();
+                if (now == null)
+                    Today = DateTime.Now;
+                else
+                    Today = now.DateTime;
+
+
+                if (Helper.CurrentClock == null)
+                    Helper.CurrentClock =  new Clock(Today);
+
+                Clock = Helper.CurrentClock;
                 var items = await JadwalStore.Get();
 
                 string hari = Helper.GetDayName(Today.DayOfWeek);
                 if(items!=null)
                 {
-                    Jumlah = items.Count;
-                    foreach (var item in items)
+                   
+                    foreach (var item in items.Where(x=>x.Hari.ToLower()==hari.ToLower()))
                     {
+                        var data = await BeritaAcaraStore.GetById(item.JadwalId, Today);
+                        if (data != null)
+                            item.Added = true;
                         Items.Add(item);
                     }
                 }
-                
+
+                Jumlah = Items.Count;
+
             }
             catch (Exception ex)
             {

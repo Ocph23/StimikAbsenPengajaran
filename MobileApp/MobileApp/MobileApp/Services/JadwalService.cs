@@ -17,6 +17,7 @@ namespace MobileApp.Services
                 using (var service = new RestService())
                 {
                     service.SetToken(Helper.Token);
+
                     var response = await service.GetAsync("api/jadwal/jadwaldosen");
                     if (response.IsSuccessStatusCode)
                     {
@@ -40,5 +41,48 @@ namespace MobileApp.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<DataTimeZone> GetDateTimeNow()
+        {
+            using (var service = new RestService())
+            {
+                try
+                {
+                    service.SetToken(Helper.Token);
+                    var response = await service.GetAsync("http://worldtimeapi.org/api/timezone/asia/jayapura");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<DataTimeZone>(content);
+                       // return JsonConvert.DeserializeObject<DataTimeZone>(res.data.ToString());
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+
+
     }
+
+
+    public class DataTimeZone
+    {
+        [JsonProperty("timezone")]
+        public string TimeZone { get; set; }
+
+        [JsonProperty("datetime")]
+        public DateTime DateTime { get; set; }
+
+        [JsonProperty("abbreviation")]
+        public string Abbreviation { get; set; }
+    }
+
 }

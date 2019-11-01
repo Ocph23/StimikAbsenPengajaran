@@ -8,6 +8,7 @@ namespace MobileApp.Droid.Renderes
 {
     public class KillApp : IKillApp
     {
+        [System.Obsolete]
         public async Task CloseAppAsync()
         {
             await Task.Delay(500);

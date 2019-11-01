@@ -17,7 +17,6 @@ namespace MobileApp
             return x as App;
         }
 
-
         public static string GetDayName(DayOfWeek day)
         {
             switch (day)
@@ -44,5 +43,8 @@ namespace MobileApp
                     return "Minggu";
             }
         }
+
+
+        public static Clock CurrentClock { get; set; }
     }
 }
