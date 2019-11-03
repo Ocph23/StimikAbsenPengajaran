@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using MobileApp;
+﻿using Android.Content.PM;
+using MobileApp.CustomControls;
+using MobileApp.Droid.Renderes;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AndroidVersion))]
 namespace MobileApp.Droid.Renderes
 {
-   public class AndroidVersion:IDeviceVersion
+    public class AndroidVersion:IDeviceVersion
     {
 
         public string GetVersion()

@@ -9,13 +9,13 @@
   <Identity
     Name="b85fe0c8-6cfd-495e-9773-949105fdf508"
     Publisher="CN=Ocph23"
-    Version="1.0.0.0" />
+    Version="1.2.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="b85fe0c8-6cfd-495e-9773-949105fdf508" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>BA Mengajar</DisplayName>
-    <PublisherDisplayName>ocph2_wip8h45</PublisherDisplayName>
+    <PublisherDisplayName>Ocph23</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

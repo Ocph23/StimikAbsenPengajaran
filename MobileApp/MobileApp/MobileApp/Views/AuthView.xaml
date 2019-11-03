@@ -46,10 +46,10 @@
                     </StackLayout>
 
                 </StackLayout>
-                <Label Margin="10" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="Ocph23 - 2019"/>
-                <StackLayout Orientation="Horizontal">
-                    <Label Margin="8" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="{Binding AppVersion,StringFormat={} - }"/>
-                    <Label Margin="8" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="{Binding AppBuild,StringFormat=Build {}}"/>
+                <Label Margin="0" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="Ocph23 - 2019"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0">
+                    <Label FontSize="8" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="{Binding AppVersion,StringFormat='Version {0} -'}"/>
+                    <Label FontSize="8" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="{Binding AppBuild,StringFormat='Buiild {0}'}"/>
                 </StackLayout>
             </StackLayout>
         </customcontrols:CustomFrame>
