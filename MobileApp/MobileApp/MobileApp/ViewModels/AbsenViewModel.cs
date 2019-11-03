@@ -67,6 +67,7 @@ namespace MobileApp.ViewModels
                     if (result != null && Model.BeritaAcaraId == null)
                     {
                         Model.BeritaAcaraId = result.BeritaAcaraId;
+                        Data.Added = true;
                     }
                     await Task.Delay(1000);
                     MessagingCenter.Send(new MessagingCenterAlert

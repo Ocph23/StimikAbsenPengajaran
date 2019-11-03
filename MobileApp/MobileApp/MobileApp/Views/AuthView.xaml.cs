@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MobileApp.CustomControls;
 
 namespace MobileApp.Views
 {
@@ -19,6 +20,7 @@ namespace MobileApp.Views
         private async Task LoadAsync()
         {
             await Task.Delay(500);
+        
             await logo.TranslateTo(0, 0, 1000, Easing.BounceOut);
         }
 

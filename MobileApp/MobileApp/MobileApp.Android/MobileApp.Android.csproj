@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderes\AndroidVersion.cs" />
     <Compile Include="Renderes\CustomFrameRenderer.cs" />
     <Compile Include="Renderes\KillApp.cs" />
     <Compile Include="Renderes\XEntryRenderer.cs" />

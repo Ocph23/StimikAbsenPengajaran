@@ -1,4 +1,5 @@
 ﻿using Lottie.Forms;
+using MobileApp.CustomControls;
 using MobileApp.Models;
 using MobileApp.Views;
 using System;
@@ -17,11 +18,33 @@ namespace MobileApp.ViewModels
         {
             animation = animationView;
             LoginCommand = new Command(LoginAction);
+            var version = DependencyService.Get<IDeviceVersion>();
+            AppBuild = version.GetBuild();
+            AppVersion = version.GetVersion();
+
         }
 
         private AnimationView animation;
 
         public Command LoginCommand { get; }
+
+        private int appbuild;
+
+        public int AppBuild
+        {
+            get { return appbuild; }
+            set { SetProperty(ref appbuild ,value); }
+        }
+
+        private string appVersion;
+
+        public string AppVersion
+        {
+            get { return appVersion; }
+            set { SetProperty(ref appVersion ,value); }
+        }
+
+
 
         private async void LoginAction(object obj)
         {

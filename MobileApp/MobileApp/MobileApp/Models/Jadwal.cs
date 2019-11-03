@@ -125,7 +125,9 @@ namespace MobileApp.Models
         public bool Added
         {
             get { return added; }
-            set { SetProperty(ref added ,value); }
+            set {
+                SetProperty(ref added ,value);
+                SelectedCommand = new Command(async (x) => await OnSelected(x), CanSelect); }
         }
 
 

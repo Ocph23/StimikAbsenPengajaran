@@ -47,6 +47,10 @@
 
                 </StackLayout>
                 <Label Margin="10" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="Ocph23 - 2019"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Margin="8" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="{Binding AppVersion,StringFormat={} - }"/>
+                    <Label Margin="8" TextColor="Silver" HorizontalOptions="Center" VerticalOptions="End" Text="{Binding AppBuild,StringFormat=Build {}}"/>
+                </StackLayout>
             </StackLayout>
         </customcontrols:CustomFrame>
     </ContentPage.Content>
