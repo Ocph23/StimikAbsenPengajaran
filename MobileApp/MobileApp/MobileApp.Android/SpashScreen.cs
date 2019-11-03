@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Com.Airbnb.Lottie;
+using Microsoft.AppCenter.Push;
 using MobileApp.Droid;
 
 namespace MobileApp.Droid
@@ -19,14 +20,22 @@ namespace MobileApp.Droid
             LottieAnimationView animationView =(LottieAnimationView)FindViewById(Resource.Id.animation_sreen);
             animationView.AddAnimatorListener(this);
         }
-
+        protected override void OnNewIntent(Android.Content.Intent intent)
+        {
+            base.OnNewIntent(intent);
+            Push.CheckLaunchedFromNotification(this, intent);
+        }
         public void OnAnimationCancel(Animator animation)
         {
         }
 
         public void OnAnimationEnd(Animator animation)
         {
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            var intent = new Intent(this, typeof(MainActivity));
+            if (Intent.Extras != null)
+                intent.PutExtras(Intent.Extras); // copy push info from splash to main
+            StartActivity(intent);
+
         }
 
         public void OnAnimationRepeat(Animator animation)

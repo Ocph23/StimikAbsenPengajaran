@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AppCenter.Push;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -70,6 +71,33 @@ namespace MobileApp.UWP
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
             // Ensure the current window is active
+
+            // ... not showing entire long method ...
+            if (e.PrelaunchActivated == false)
+            {
+                if (rootFrame.Content == null)
+                {
+                    // This is what triggers Xamarin.Forms portable App.OnStart method where you typically call AppCenter.Start
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                }
+                Window.Current.Activate();
+            }
+
+            // Best place to call this method
+            Push.CheckLaunchedFromNotification(e);
+
+            // End of method
+
+
+
+
+
+
+
+
+
+
+
             Window.Current.Activate();
 
 

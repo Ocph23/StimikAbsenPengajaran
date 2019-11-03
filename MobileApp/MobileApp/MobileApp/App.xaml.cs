@@ -7,6 +7,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using System.Globalization;
+using Microsoft.AppCenter.Push;
 
 namespace MobileApp
 {
@@ -44,7 +45,31 @@ namespace MobileApp
 
         protected override void OnStart()
         {
-           // AppCenter.Start("ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c", typeof(Push));eeqweqw
+            if (!AppCenter.Configured)
+            {
+                Push.PushNotificationReceived += (sender, e) =>
+                {
+                    // Add the notification message and title to the message
+                    var summary = $"Push notification received:" +
+                                        $"\n\tNotification title: {e.Title}" +
+                                        $"\n\tMessage: {e.Message}";
+
+                    // If there is custom data associated with the notification,
+                    // print the entries
+                    if (e.CustomData != null)
+                    {
+                        summary += "\n\tCustom data:\n";
+                        foreach (var key in e.CustomData.Keys)
+                        {
+                            summary += $"\t\t{key} : {e.CustomData[key]}\n";
+                        }
+                    }
+
+                    // Send the notification summary to debug output
+                    System.Diagnostics.Debug.WriteLine(summary);
+                };
+            }
+            AppCenter.Start("ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c", typeof(Push));
             AppCenter.Start("android=ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c;" +
                    "uwp={cb9aee59-a2e1-4d07-beaa-57877e1e9cd9};" +
                    "ios={aa239d3c-28bc-49f5-a922-1a1eec1aca74}",

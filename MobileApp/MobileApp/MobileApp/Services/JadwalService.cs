@@ -61,7 +61,7 @@ namespace MobileApp.Services
                         return null;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return null;
                 }

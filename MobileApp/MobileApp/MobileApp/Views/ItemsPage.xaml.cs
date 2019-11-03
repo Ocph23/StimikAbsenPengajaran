@@ -34,16 +34,5 @@ namespace MobileApp.Views
             var main = await Helper.GetMainPageAsync();
            await main.MainPage.Navigation.PushAsync(new HistoryView(item));
         }
-
-        [System.Obsolete]
-        protected override bool OnBackButtonPressed()
-        {
-            if(Device.OS == TargetPlatform.Android)
-            {
-                DependencyService.Get<IKillApp>().CloseAppAsync();
-            }
-          
-            return base.OnBackButtonPressed();
-        }
     }
 }
