@@ -50,12 +50,10 @@ namespace MobileApp
                 Push.PushNotificationReceived += (sender, e) =>
                 {
                     // Add the notification message and title to the message
-                    var summary = $"Push notification received:" +
+                    var summary = $"Notification received:" +
                                         $"\n\tNotification title: {e.Title}" +
                                         $"\n\tMessage: {e.Message}";
 
-                    // If there is custom data associated with the notification,
-                    // print the entries
                     if (e.CustomData != null)
                     {
                         summary += "\n\tCustom data:\n";
