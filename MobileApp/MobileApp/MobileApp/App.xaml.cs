@@ -40,14 +40,14 @@ namespace MobileApp
             DependencyService.Register<JadwalService>();
             DependencyService.Register<BeritaAcaraService>();
             ChangeScreen(new AuthView());
-        }
+        } 
 
         protected override void OnStart()
         {
-           // AppCenter.Start("ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c", typeof(Push));
+           // AppCenter.Start("ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c", typeof(Push));eeqweqw
             AppCenter.Start("android=ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c;" +
                    "uwp={cb9aee59-a2e1-4d07-beaa-57877e1e9cd9};" +
-                   "ios={Your iOS App secret here}",
+                   "ios={aa239d3c-28bc-49f5-a922-1a1eec1aca74}",
                    typeof(Analytics), typeof(Crashes));
         }
 
