@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.OS;
 using Lottie.Forms.Droid;
 using Android;
+using Microsoft.AppCenter.Push;
 
 namespace MobileApp.Droid
 {
@@ -28,6 +29,12 @@ namespace MobileApp.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnNewIntent(Android.Content.Intent intent)
+        {
+            base.OnNewIntent(intent);
+            Push.CheckLaunchedFromNotification(this, intent);
         }
     }
 }

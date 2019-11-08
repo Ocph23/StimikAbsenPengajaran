@@ -23,7 +23,7 @@ namespace MobileApp.Droid
         protected override void OnNewIntent(Android.Content.Intent intent)
         {
             base.OnNewIntent(intent);
-            Push.CheckLaunchedFromNotification(this, intent);
+        
         }
         public void OnAnimationCancel(Animator animation)
         {
@@ -34,6 +34,7 @@ namespace MobileApp.Droid
             var intent = new Intent(this, typeof(MainActivity));
             if (Intent.Extras != null)
                 intent.PutExtras(Intent.Extras); // copy push info from splash to main
+            Push.CheckLaunchedFromNotification(this, intent);
             StartActivity(intent);
 
         }

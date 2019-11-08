@@ -51,7 +51,7 @@ namespace MobileApp.UWP
             RestoreState(loadState);
         }
 
-        async void RestoreState(bool loadState)
+        void RestoreState(bool loadState)
         {
             if (loadState)
             {
@@ -84,7 +84,7 @@ namespace MobileApp.UWP
             extendedSplashImage.Width = splashImageRect.Width;
 
             // Position the Lottie animation.
-            var factor = splashImageRect.Width / 620;
+            var factor = splashImageRect.Width / 300;
             SplashScreenAnimation.SetValue(Canvas.LeftProperty, splashImageRect.X + 100 * factor);
             SplashScreenAnimation.SetValue(Canvas.TopProperty, splashImageRect.Y + 150 * factor);
             SplashScreenAnimation.Width = 180 * factor;

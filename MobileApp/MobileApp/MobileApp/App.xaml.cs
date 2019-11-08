@@ -14,7 +14,7 @@ namespace MobileApp
     public partial class App : Application
     {
 
-        public App()
+        public App()    
         {
             InitializeComponent();
 
@@ -49,22 +49,30 @@ namespace MobileApp
             {
                 Push.PushNotificationReceived += (sender, e) =>
                 {
-                    // Add the notification message and title to the message
-                    var summary = $"Notification received:" +
-                                        $"\n\tNotification title: {e.Title}" +
-                                        $"\n\tMessage: {e.Message}";
 
-                    if (e.CustomData != null)
+                    try
                     {
-                        summary += "\n\tCustom data:\n";
-                        foreach (var key in e.CustomData.Keys)
+                        MessagingCenter.Send(new MessagingCenterAlert
                         {
-                            summary += $"\t\t{key} : {e.CustomData[key]}\n";
+                            Title = e.Title,
+                            Message = e.Message,
+                            Cancel = "OK"
+                        }, "message");
+                        // Add the notification message and title to t
+                        if (e.CustomData != null)
+                        {
+                            var summary = "\n\tCustom data:\n";
+                            foreach (var key in e.CustomData.Keys)
+                            {
+                                summary += $"\t\t{key} : {e.CustomData[key]}\n";
+                            }
                         }
                     }
-
-                    // Send the notification summary to debug output
-                    System.Diagnostics.Debug.WriteLine(summary);
+                    catch (Exception ex)
+                    {
+                        Crashes.TrackError(ex);
+                    }
+                   
                 };
             }
             AppCenter.Start("ac38d1a7-ffc0-477e-b1cb-ac50b9bede6c", typeof(Push));
