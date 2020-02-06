@@ -5,9 +5,7 @@ using Xamarin.Forms;
 
 namespace MobileApp
 {
-
-
-    public delegate void DelOnTick();
+  public delegate void DelOnTick();
   public  class Clock:BaseNotify
     {
         public event DelOnTick OnTick;
@@ -27,7 +25,6 @@ namespace MobileApp
         }
 
         private DateTime current;
-
         public DateTime Current
         {
             get { return current; }
