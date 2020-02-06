@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using MobileApp.Models;
 using MobileApp.Views;
 using System.Linq;
+using MobileApp.Services;
 
 namespace MobileApp.ViewModels
 {
@@ -79,6 +80,9 @@ namespace MobileApp.ViewModels
                         Items.Add(item);
                     }
                 }
+
+                var closer = DependencyService.Get<IAlarmService>();
+                closer?.SetAlarm(items);
 
                 Jumlah = Items.Count;
 

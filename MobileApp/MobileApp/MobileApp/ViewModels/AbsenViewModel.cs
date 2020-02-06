@@ -23,8 +23,6 @@ namespace MobileApp.ViewModels
             set { SetProperty(ref saveCommand ,value); }
         }
 
-
-
         public BeritaAcara Model {
             get { return _model; }
             set { SetProperty(ref _model, value); }
@@ -44,7 +42,7 @@ namespace MobileApp.ViewModels
             this.Model = model;
             this.Data = data;
             this.Dosen = Helper.Dosen;
-            SaveCommand = new Command(SaveAction, x=>true);
+            SaveCommand = new Command(SaveAction, x=> false);
         }
 
         private async void SaveAction(object obj)

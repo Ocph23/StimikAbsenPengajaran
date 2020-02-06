@@ -16,8 +16,9 @@ namespace MobileApp.CustomControls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NumberPicker : ContentView
     {
-
-        public static readonly BindableProperty NilaiProperty = BindableProperty.Create("Nilai", typeof(Int32), typeof(NumberPicker),0);
+        
+        public static readonly BindableProperty EditableProperty = BindableProperty.Create("Editable", typeof(Boolean), typeof(NumberPicker),true);
+        public static readonly BindableProperty NilaiProperty = BindableProperty.Create("Nilai", typeof(Int32), typeof(NumberPicker), 0);
         public static readonly BindableProperty DataProperty = BindableProperty.Create("Data", typeof(Int32), typeof(AbsenView), 0,BindingMode.TwoWay);
 
         public event delChangeValue onChangeValue;
@@ -31,6 +32,13 @@ namespace MobileApp.CustomControls
         {
             get => (Int32)GetValue(NilaiProperty);
             set => SetValue(NilaiProperty, value);
+        }
+
+
+        public bool Editable
+        {
+            get => (bool)GetValue(EditableProperty);
+            set => SetValue(EditableProperty, value);
         }
 
 

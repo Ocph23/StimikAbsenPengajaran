@@ -89,6 +89,15 @@ namespace MobileApp.Models
             set { thakademik = value; }
         }
 
+
+        private int jumlahmahasiswa;
+        [JsonProperty("jumlahmahasiswa")]
+        public int JumlahMahasiswa
+        {
+            get { return jumlahmahasiswa; }
+            set { jumlahmahasiswa = value; }
+        }
+
         public string KelasRuang
         {
             get { return $"Kelas : {Kelas}  - Ruang : {Ruang}"; }
@@ -153,8 +162,8 @@ namespace MobileApp.Models
             //  Convert.ToInt32(19),Convert.ToInt32(45), 0);
             var newDate = MyClock.Current;
             var currentTimeStart = newDate.TimeOfDay;
-            var selisihx = currentTimeStart.Subtract(Selesai.TimeOfDay);
-            if (selisihx.TotalMinutes >= 15)
+            var selisihx =Selesai.TimeOfDay.Subtract(currentTimeStart);
+            if (selisihx.TotalMinutes <=15 && selisihx.TotalMinutes >= -30)
                 return true;
             else
                 return false;

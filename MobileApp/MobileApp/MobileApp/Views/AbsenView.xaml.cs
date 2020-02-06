@@ -16,30 +16,15 @@ namespace MobileApp.Views
         {
             InitializeComponent();
             this.BindingContext=vm= new AbsenViewModel(data, this.Navigation);
+            jumlah.Nilai=data.JumlahMahasiswa;
+            hadir.Nilai = data.JumlahMahasiswa;
             jumlah.onChangeValue += Jumlah_onChangeValue;
             hadir.onChangeValue += Hadir_onChangeValue; 
             alpa.onChangeValue += Alpa_onChangeValue;
             sakit.onChangeValue += Sakit_onChangeValue;
             izin.onChangeValue += Izin_onChangeValue;
-
-          /*  var task=  vm.BeritaAcaraStore.GetById(data.JadwalId, DateTime.Now);
-            task.ContinueWith(completeTaskAsync);*/
-         
         }
 
-        /* private async Task completeTaskAsync(Task<BeritaAcara> arg1)
-         {
-             var ba = await arg1;
-             if(ba!=null)
-             {
-                 vm.Model = ba;
-                 jumlah.Nilai = ba.Jumlah;
-                 hadir.Nilai = ba.Hadir;
-                 alpa.Nilai = ba.Alpa;
-                 izin.Nilai = ba.Izin;
-                 sakit.Nilai = ba.Sakit;
-             }
-         }*/
         public AbsenView(Models.Jadwal data, BeritaAcara ba)
         {
             InitializeComponent();
@@ -49,14 +34,11 @@ namespace MobileApp.Views
             alpa.onChangeValue += Alpa_onChangeValue;
             sakit.onChangeValue += Sakit_onChangeValue;
             izin.onChangeValue += Izin_onChangeValue;
-            jumlah.Nilai = ba.Jumlah;
+            jumlah.Nilai = ba.Hadir+ba.Alpa+ba.Izin+ba.Sakit;
             hadir.Nilai = ba.Hadir;
             alpa.Nilai = ba.Alpa;
             izin.Nilai = ba.Izin;
             sakit.Nilai = ba.Sakit;
-            /*  var task=  vm.BeritaAcaraStore.GetById(data.JadwalId, DateTime.Now);
-              task.ContinueWith(completeTaskAsync);*/
-
         }
         private void Izin_onChangeValue(bool isAdd,int value)
         {

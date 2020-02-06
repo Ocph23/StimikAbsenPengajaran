@@ -63,7 +63,7 @@ namespace MobileApp.Services
 
     
 
-    public Task<bool> Logout()
+        public Task<bool> Logout()
         {
             throw new NotImplementedException();
         }

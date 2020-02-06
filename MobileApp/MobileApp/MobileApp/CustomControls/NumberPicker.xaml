@@ -8,9 +8,9 @@
              x:Class="MobileApp.CustomControls.NumberPicker">
   <ContentView.Content>
       <StackLayout Orientation="Horizontal">
-            <Button Clicked="Button_Clicked_1" Margin="0" HeightRequest="25" WidthRequest="30" Text="-" HorizontalOptions="Center" Padding="0"></Button>
+            <Button Clicked="Button_Clicked_1" Margin="0" IsEnabled="{Binding Editable}" HeightRequest="25" WidthRequest="30" Text="-" HorizontalOptions="Center" Padding="0"></Button>
             <customcontrols:XEntry  FontSize="14"  Text="{Binding Nilai, Mode=TwoWay}" HorizontalOptions="Center"
-                               HorizontalTextAlignment="Center">
+                               HorizontalTextAlignment="Center" IsEnabled="{Binding Editable}">
                 <customcontrols:XEntry.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double" >
                         <On Platform="Android" Value="40" />
@@ -18,7 +18,7 @@
                     </OnPlatform>
                 </customcontrols:XEntry.WidthRequest>
             </customcontrols:XEntry>
-            <Button Clicked="Button_Clicked" Margin="0" HeightRequest="25" WidthRequest="30" Text="+" HorizontalOptions="Center" Padding="0"></Button>
+            <Button Clicked="Button_Clicked" Margin="0" IsEnabled="{Binding Editable}"  HeightRequest="25" WidthRequest="30" Text="+" HorizontalOptions="Center" Padding="0"></Button>
         </StackLayout>
   </ContentView.Content>
 </ContentView>
