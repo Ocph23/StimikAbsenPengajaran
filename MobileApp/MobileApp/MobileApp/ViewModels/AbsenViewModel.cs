@@ -31,7 +31,7 @@ namespace MobileApp.ViewModels
         public AbsenViewModel(Jadwal data, INavigation navigation)
         {
             Nav = navigation;
-            Model = new BeritaAcara();
+            Model = new BeritaAcara() { Jumlah=data.JumlahMahasiswa, Hadir=data.JumlahMahasiswa , MataKuliahId= data.MatakuliahId, NIDN=data.NIDN};
             this.Data = data;
             this.Dosen = Helper.Dosen;
             SaveCommand = new Command(SaveAction, x => true);
@@ -56,7 +56,6 @@ namespace MobileApp.ViewModels
                     Model.Tanggal = Helper.CurrentClock.Current;
                     Model.JadwalId = Data.JadwalId;
                     Model.NIDN = Dosen.NIDN;
-                    Model.MataKuliahId = Data.MatakuliahId;
                 }
 
                 try

@@ -72,6 +72,14 @@ namespace MobileApp.Models
             get { return selesai; }
             set { selesai = value; }
         }
+        private string dosenId;
+
+        [JsonProperty("nidn")]
+        public string NIDN
+        {
+            get { return dosenId; }
+            set { SetProperty(ref dosenId, value); }
+        }
 
         private string ruang;
         [JsonProperty("ruangan")]

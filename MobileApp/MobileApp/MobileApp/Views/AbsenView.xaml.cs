@@ -16,13 +16,13 @@ namespace MobileApp.Views
         {
             InitializeComponent();
             this.BindingContext=vm= new AbsenViewModel(data, this.Navigation);
-            jumlah.Nilai=data.JumlahMahasiswa;
-            hadir.Nilai = data.JumlahMahasiswa;
             jumlah.onChangeValue += Jumlah_onChangeValue;
             hadir.onChangeValue += Hadir_onChangeValue; 
             alpa.onChangeValue += Alpa_onChangeValue;
             sakit.onChangeValue += Sakit_onChangeValue;
             izin.onChangeValue += Izin_onChangeValue;
+            jumlah.Nilai = data.JumlahMahasiswa;
+            hadir.Nilai = data.JumlahMahasiswa;
         }
 
         public AbsenView(Models.Jadwal data, BeritaAcara ba)
