@@ -84,6 +84,11 @@ namespace MobileApp.Services
                                 t.BeritaAcaraId = result;
                             }
                             return t;
+                        }else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            ResponseResult res = JsonConvert.DeserializeObject<ResponseResult>(content);
+                            throw new System.Exception(res.data.ToString());
                         }
                         else
                         {

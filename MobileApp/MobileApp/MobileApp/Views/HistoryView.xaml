@@ -50,7 +50,7 @@
                                                 </StackLayout>
                                             </StackLayout>
                                             <Button BackgroundColor="#2B9DB1" FontSize="10" TextColor="White" HorizontalOptions="EndAndExpand"
-                                            Padding="1" HeightRequest="15" Text="Edit" 
+                                            Padding="1" HeightRequest="15" Text="Lihat" 
                                         Command="{Binding SelectedCommand}" 
                                         CommandParameter="{Binding .}"
                                             CornerRadius="15" WidthRequest="75"></Button>

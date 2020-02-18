@@ -166,8 +166,6 @@ namespace MobileApp.Models
         {
             if (Added)
                 return false;
-            //  var newDate = new DateTime(MyClock.Current.Year, MyClock.Current.Month, MyClock.Current.Day,
-            //  Convert.ToInt32(19),Convert.ToInt32(45), 0);
             var newDate = MyClock.Current;
             var currentTimeStart = newDate.TimeOfDay;
             var selisihx =Selesai.TimeOfDay.Subtract(currentTimeStart);
