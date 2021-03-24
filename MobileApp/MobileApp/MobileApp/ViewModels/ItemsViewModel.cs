@@ -61,22 +61,22 @@ namespace MobileApp.ViewModels
                 else
                     Today = now.DateTime;
 
-
                 if (Helper.CurrentClock == null)
                     Helper.CurrentClock =  new Clock(Today);
 
                 Clock = Helper.CurrentClock;
                 var items = await JadwalStore.Get();
 
-                string hari = Helper.GetDayName(Today.DayOfWeek);
-                if(items!=null)
+                string hariini = Helper.GetDayName(Today.DayOfWeek);
+                string harikemarin = Helper.GetDayName(Today.AddDays(-1).DayOfWeek);
+                if (items!=null)
                 {
-                   
-                    foreach (var item in items.Where(x=>x.Hari.ToLower()==hari.ToLower()))
+                    foreach (var item in items.Where(x=>x.Hari.ToLower()==hariini.ToLower() || x.Hari.ToLower() == harikemarin.ToLower()))
                     {
                         var data = await BeritaAcaraStore.GetById(item.JadwalId, Today);
                         if (data != null)
                             item.Added = true;
+                        //item.Selesai = DateTime.Now;
                         Items.Add(item);
                     }
                 }

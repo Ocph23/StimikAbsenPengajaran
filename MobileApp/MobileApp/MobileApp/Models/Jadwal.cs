@@ -166,13 +166,17 @@ namespace MobileApp.Models
         {
             if (Added)
                 return false;
-            var newDate = MyClock.Current;
-            var currentTimeStart = newDate.TimeOfDay;
-            var selisihx =Selesai.TimeOfDay.Subtract(currentTimeStart);
-            if (selisihx.TotalMinutes <=15 && selisihx.TotalMinutes >= -30)
-                return true;
-            else
-                return false;
+            return true;
+            
+            //var newDate = MyClock.Current;
+            //var currentTimeStart = newDate.TimeOfDay;
+            //var selisihx =Selesai.TimeOfDay.Subtract(currentTimeStart);
+            //var nextDay = Selesai.AddDays(1);
+            //var endDay = new DateTime(nextDay.Year, nextDay.Month, nextDay.Day);
+            //if (selisihx.TotalMinutes <=15 && newDate < endDay)
+            //    return true;
+            //else
+            //    return false;
         }
 
         private async Task OnSelected(object obj)

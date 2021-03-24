@@ -11,13 +11,11 @@ namespace MobileApp
 {
     public class RestService : HttpClient
     {
-
         public RestService()
         {
-
             // this.MaxResponseContentBufferSize = 256000;
             //var a = ConfigurationManager.AppSettings["IP"];
-            string _server = "http://restsimak.stimiksepnop.ac.id/";
+            string _server = Helper.Url;
             this.BaseAddress = new Uri(_server);
             this.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8");
             //key api = 57557c4f25f436213fe34a2090a266e2

@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace MobileApp.Models
 {
-    public class Dosen
+    public class Dosen:BaseNotify
     {
         private int dosenId;
 
@@ -31,6 +32,24 @@ namespace MobileApp.Models
             set { nidn = value; }
         }
 
+
+
+        private string photo;
+        [JsonProperty("photo")]
+        public string Photo
+        {
+            get { return photo; }
+            set { photo = value;}
+        }
+
+
+        public string PhotoView
+        {
+            get {
+                if (string.IsNullOrEmpty(Photo))
+                    return null;
+                return $"{Helper.Url}assets/file/photo/{photo}"; }
+        }
 
         private List<Jadwal> dataJadwal;
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using MobileApp.Services;
 using MobileApp.Views;
 using Microsoft.AppCenter;
@@ -8,6 +7,9 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using System.Globalization;
 using Microsoft.AppCenter.Push;
+using Xamarin.Essentials;
+using Newtonsoft.Json;
+using MobileApp.Models;
 
 namespace MobileApp
 {
@@ -40,7 +42,13 @@ namespace MobileApp
             DependencyService.Register<AuthService>();
             DependencyService.Register<JadwalService>();
             DependencyService.Register<BeritaAcaraService>();
-            ChangeScreen(new AuthView());
+
+            if(string.IsNullOrEmpty(SecureStorage.GetAsync("token").Result))
+                 ChangeScreen(new AuthView());
+            else
+            {
+                ChangeScreen(new ItemsPage());
+            }
         } 
 
         protected override void OnStart()

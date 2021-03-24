@@ -9,7 +9,6 @@ namespace MobileApp.Services
 {
    public class JadwalService : IJadwalService<Jadwal>
     {
-
         public async Task<List<Jadwal>> Get()
         {
             try
@@ -17,7 +16,10 @@ namespace MobileApp.Services
                 using (var service = new RestService())
                 {
                     service.SetToken(Helper.Token);
-
+                    //return new List<Jadwal>() {
+                    // new Jadwal{ Kelas="D", Ruang="GIII", Hari="Rabu", NIDN="10000000", TahunAkademik="2020/2021",  NamaMataKuliah="Matemtika",
+                    // Mulai= DateTime.Now.AddMinutes(10), Selesai= DateTime.Now.AddMinutes(60) }
+                    //};
                     var response = await service.GetAsync("api/jadwal/jadwaldosen");
                     if (response.IsSuccessStatusCode)
                     {
@@ -27,7 +29,7 @@ namespace MobileApp.Services
                     }
                     else
                     {
-                        throw new System.Exception(response.StatusCode.ToString());
+                       throw new Exception(Helper.ResponseErrorHandler(response));
                     }
                 }
             }
@@ -49,7 +51,7 @@ namespace MobileApp.Services
                 try
                 {
                     service.SetToken(Helper.Token);
-                    var response = await service.GetAsync("http://worldtimeapi.org/api/timezone/asia/jayapura");
+                    var response = await service.GetAsync("https://worldtimeapi.org/api/timezone/asia/jayapura");
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
@@ -61,7 +63,7 @@ namespace MobileApp.Services
                         return null;
                     }
                 }
-                catch (Exception)
+                catch 
                 {
                     return null;
                 }

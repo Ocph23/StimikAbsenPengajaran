@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:customcontrols="clr-namespace:MobileApp.CustomControls"
+             xmlns:customcontrols="clr-namespace:MobileApp.CustomControls" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              mc:Ignorable="d" BackgroundColor="LightGray"
              x:Class="MobileApp.Views.ItemsPage" NavigationPage.HasNavigationBar="false"
              Title="{Binding Title}" 
@@ -15,15 +15,22 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <customcontrols:CustomFrame HasShadow="True" CornerRadius="0,30,60,0" Grid.Row="0" BackgroundColor="#065C89">
-                <StackLayout Margin="10">
-                    <Label Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="20"/>
-                    <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
-                    <Label Text="{Binding Clock.Current,StringFormat='{}{0:dddd, dd MMMM yyyy - HH:mm:ss}'}" TextColor="White" Margin="10,-10" 
-                       FontSize="15" HorizontalTextAlignment="Center"/>
-                </StackLayout>
-            </customcontrols:CustomFrame>
-
+            
+            <StackLayout Padding="10" BackgroundColor="#065C89" HeightRequest="100">
+                <Label Text="{Binding Clock.Current, StringFormat='{}{0:dddd, dd MMMM yyyy - HH:mm:ss}'}" TextColor="White" 
+                       FontSize="11" HorizontalTextAlignment="End"/>
+                <Label HorizontalOptions="CenterAndExpand" Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="15"/>
+            </StackLayout>
+            <StackLayout Grid.RowSpan="2" Margin="10"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <ffimageloading:CachedImage Margin="30" HorizontalOptions="Center" VerticalOptions="Center"
+			        WidthRequest="100" HeightRequest="150"
+			        DownsampleToViewSize="true"
+			        Source = "{Binding Dosen.PhotoView}">
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:CircleTransformation  />
+                    </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage>
+            </StackLayout>
             <StackLayout Grid.Row="1" Margin="10" Orientation="Horizontal" >
                 <Label Text="{Binding Jumlah}" FontSize="40" />
                 <Label Text="Mata Kuliah" FontSize="15" VerticalTextAlignment="Center"/>
@@ -40,9 +47,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <customcontrols:CustomFrame CornerRadius="0,10,0,10" Margin="4">
-                                <StackLayout Padding="10" BackgroundColor="White" >
-                                    <StackLayout Orientation="Horizontal" Padding="10" >
-                                        <StackLayout Margin="5">
+                                <StackLayout Padding="5" BackgroundColor="White" >
+                                    <StackLayout Orientation="Horizontal" Padding="0" >
+                                        <StackLayout Margin="0">
                                             <Label Text="{Binding NamaMataKuliah}"  FontSize="15"/>
                                             <Label Text="{Binding KelasRuang}"  FontSize="12"/>
                                         </StackLayout>
@@ -83,5 +90,4 @@
             </ListView>
         </Grid>
     </ScrollView>
-
 </ContentPage>

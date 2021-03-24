@@ -35,7 +35,8 @@ namespace MobileApp.Services
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                         return null;
-                    throw new System.Exception(response.StatusCode.ToString());
+
+                    throw new Exception(Helper.ResponseErrorHandler(response));
                 }
             }
         }

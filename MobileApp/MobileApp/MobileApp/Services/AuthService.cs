@@ -22,16 +22,13 @@ namespace MobileApp.Services
             {
                 try
                 {
-                    var response = await service.PostAsync("api/users/login",
-                        service.GenerateHttpContent( new User { UserName=userName, Password=password}));
+                    var response = await service.PostAsync("api/users/login",service.GenerateHttpContent( new User { UserName=userName, Password=password}));
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
                         ResponseResult res = JsonConvert.DeserializeObject<ResponseResult>(content);
                         var token = JsonConvert.DeserializeObject<AuthenticationToken>(res.data.ToString());
-                        Helper.Token = token.Token;
-
-                        service.SetToken(Helper.Token);
+                        service.SetToken(token.Token);
                         var profileResponse = await service.GetAsync("api/home/getHome?role=dosen");
                         if(profileResponse.IsSuccessStatusCode)
                         {
@@ -39,7 +36,16 @@ namespace MobileApp.Services
                             ResponseResult resResult = JsonConvert.DeserializeObject<ResponseResult>(profileString);
                             var Dosens = JsonConvert.DeserializeObject<List<Dosen>>(resResult.data.ToString());
                             if (Dosens != null)
-                                Helper.Dosen = Dosens.FirstOrDefault();
+                            {
+                                var dosen= Dosens.FirstOrDefault();
+                                if(dosen!=null)
+                                {
+                                    if(string.IsNullOrEmpty(dosen.Photo))
+                                       throw new SystemException("Lengkapi Photo Profil Anda Di SIMAK dan Silahkan Ulangi kembali");
+                                    Helper.Token = token.Token;
+                                    Helper.Dosen = dosen;
+                                }
+                            }
                             else
                                 throw new SystemException("Anda Tidak Memiliki Profile");
                         }

@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:customcontrols="clr-namespace:MobileApp.CustomControls"
-             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              mc:Ignorable="d" NavigationPage.HasNavigationBar="false"
              x:Class="MobileApp.Views.AbsenView" x:Name="absenView">
     <ContentPage.Content>
@@ -15,23 +15,21 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <customcontrols:CustomFrame HasShadow="True" CornerRadius="0,30,60,0" Grid.Row="0" BackgroundColor="#065C89">
-                    <StackLayout Margin="20">
-                        <Label Text="{Binding Dosen.Name}" TextColor="Wheat" FontSize="18"/>
-                        <Image Source="photo.png" HorizontalOptions="Start" HeightRequest="100" ></Image>
-                        <Label Text="{Binding Today,StringFormat='{}{0:dddd, dd MMMM yyyy}'}" TextColor="White" Margin="10,-10" 
-                       FontSize="15" HorizontalTextAlignment="End"/>
-                    </StackLayout>
-                </customcontrols:CustomFrame>
-               
-                <StackLayout Grid.Row="1" Padding="10" BackgroundColor="White" Margin="4">
+                <StackLayout Padding="10" BackgroundColor="#065C89" HeightRequest="100">
                     <StackLayout Orientation="Horizontal" Padding="10" >
-                        <StackLayout Margin="5">
-                            <Label Text="{Binding Data.NamaMataKuliah}"  FontSize="15"/>
-                            <Label Text="{Binding Data.KelasRuang}"  FontSize="12"/>
+                        <StackLayout  Margin="5">
+                            <Label TextColor="White" Text="{Binding Data.NamaMataKuliah}"  FontSize="18"/>
+                            <Label TextColor="White" Text="{Binding Data.KelasRuang}"  FontSize="15"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label TextColor="White" Text="{Binding Data.Mulai, StringFormat='\{0:dd MMM yyyy}'}"  FontSize="15"/>
+                                <Label TextColor="White" Text="{Binding Data.Mulai, StringFormat='\{0:HH:mm}'}"  FontSize="15"/>
+                                <Label TextColor="White" Text="-"  FontSize="15"/>
+                                <Label TextColor="White" Text="{Binding Data.Selesai, StringFormat='\{0:HH:mm}'}"  FontSize="15"/>
+                            </StackLayout>
                         </StackLayout>
                     </StackLayout>
-
+                </StackLayout>
+                <StackLayout Grid.Row="1" Padding="10" BackgroundColor="White" Margin="4">
                     <BoxView   HorizontalOptions="FillAndExpand" HeightRequest="0.21" Color="Silver"></BoxView>
                     <StackLayout Padding="10">
                         <StackLayout Orientation="Horizontal">
@@ -113,7 +111,6 @@
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>
-               
             </Grid>
         </ScrollView>
     </ContentPage.Content>
