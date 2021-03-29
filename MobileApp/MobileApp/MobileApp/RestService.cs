@@ -32,19 +32,17 @@ namespace MobileApp
             var token = Helper.Token;
             if (token != null && token != null)
             {
+               
                 this.DefaultRequestHeaders.Authorization =
                    new AuthenticationHeaderValue("", token);
             }
         }
 
-
         public void SetToken(string token)
         {
             if (token != null)
             {
-                this.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", 
-                    token);
-                //this.DefaultRequestHeaders.Authorization =new AuthenticationHeaderValue("Basic", token);
+                this.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", token);
             }
         }
         public StringContent GenerateHttpContent(object data)

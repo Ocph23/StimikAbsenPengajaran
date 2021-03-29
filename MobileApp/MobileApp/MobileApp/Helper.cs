@@ -79,9 +79,10 @@ namespace MobileApp
             {
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
-                    var main =  Helper.GetMainPageAsync().Result;
+                    var main = Helper.GetMainPageAsync().Result;
                     main.ChangeScreen(new AuthView());
-                }
+                    return "Unauthorized";
+                }  
                 return response.StatusCode.ToString();
             }
             catch 

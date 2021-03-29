@@ -66,7 +66,6 @@ namespace MobileApp.ViewModels
 
                 Clock = Helper.CurrentClock;
                 var items = await JadwalStore.Get();
-
                 string hariini = Helper.GetDayName(Today.DayOfWeek);
                 string harikemarin = Helper.GetDayName(Today.AddDays(-1).DayOfWeek);
                 if (items!=null)
@@ -83,7 +82,6 @@ namespace MobileApp.ViewModels
 
                 var closer = DependencyService.Get<IAlarmService>();
                 closer?.SetAlarm(items);
-
                 Jumlah = Items.Count;
 
             }

@@ -16,14 +16,12 @@ namespace MobileApp.Services
                 using (var service = new RestService())
                 {
                     service.SetToken(Helper.Token);
-                    //return new List<Jadwal>() {
-                    // new Jadwal{ Kelas="D", Ruang="GIII", Hari="Rabu", NIDN="10000000", TahunAkademik="2020/2021",  NamaMataKuliah="Matemtika",
-                    // Mulai= DateTime.Now.AddMinutes(10), Selesai= DateTime.Now.AddMinutes(60) }
-                    //};
                     var response = await service.GetAsync("api/jadwal/jadwaldosen");
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
+                        if (string.IsNullOrEmpty(content))
+                            throw new SystemException("Jadwal tidak ditemukan");
                         ResponseResult res = JsonConvert.DeserializeObject<ResponseResult>(content);
                         return JsonConvert.DeserializeObject<List<Jadwal>>(res.data.ToString());
                     }
@@ -56,16 +54,12 @@ namespace MobileApp.Services
                     {
                         var content = await response.Content.ReadAsStringAsync();
                         return JsonConvert.DeserializeObject<DataTimeZone>(content);
-                       // return JsonConvert.DeserializeObject<DataTimeZone>(res.data.ToString());
                     }
-                    else
-                    {
-                        return null;
-                    }
+                    throw new SystemException();
                 }
                 catch 
                 {
-                    return null;
+                    return new DataTimeZone() { DateTime= DateTime.Now, TimeZone="WIT", Abbreviation="" };
                 }
             }
         }
